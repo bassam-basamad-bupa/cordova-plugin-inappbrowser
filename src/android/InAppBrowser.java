@@ -103,7 +103,7 @@ public class InAppBrowser extends CordovaPlugin {
     private static final String CLEAR_ALL_CACHE = "clearcache";
     private static final String CLEAR_SESSION_CACHE = "clearsessioncache";
     private static final String HARDWARE_BACK_BUTTON = "hardwareback";
-    private static final String ENABLED_HARDWARE_BACK_ON_NO_HISTORY = "enabledHardwareBackOnNoHistory"; // ADDED BY BASSAM
+    private static final String ENABLED_HARDWARE_BACK_ON_NO_HISTORY = "enabledHardwareBackOnNoHistory";
     private static final String MEDIA_PLAYBACK_REQUIRES_USER_ACTION = "mediaPlaybackRequiresUserAction";
     private static final String SHOULD_PAUSE = "shouldPauseOnSuspend";
     private static final Boolean DEFAULT_HARDWARE_BACK = true;
@@ -131,7 +131,7 @@ public class InAppBrowser extends CordovaPlugin {
     private boolean clearAllCache = false;
     private boolean clearSessionCache = false;
     private boolean hadwareBackButton = true;
-    private boolean enabledHardwareBackOnNoHistory = true;//Added By Bassam Basamad
+    private boolean enabledHardwareBackOnNoHistory = true;
     private boolean mediaPlaybackRequiresUserGesture = false;
     private boolean shouldPauseInAppBrowser = false;
     private boolean useWideViewPort = true;
@@ -591,7 +591,7 @@ public class InAppBrowser extends CordovaPlugin {
      * @return boolean
      */
     public boolean isEnableHardwareBackOnNoHistory() {
-        return enabledHardwareBackOnNoHisotry;
+        return enabledHardwareBackOnNoHistory;
     }
    
     /**
@@ -672,9 +672,10 @@ public class InAppBrowser extends CordovaPlugin {
             } else {
                 hadwareBackButton = DEFAULT_HARDWARE_BACK;
             }
+			
             String enableHardwareBackOnNoHisotry = features.get(ENABLED_HARDWARE_BACK_ON_NO_HISTORY);
             if (enableHardwareBackOnNoHisotry != null) {
-                enabledHardwareBackOnNoHisotry = enableHardwareBackOnNoHisotry.equals("yes") ? true : false;
+                enabledHardwareBackOnNoHistory = enableHardwareBackOnNoHisotry.equals("yes") ? true : false;
             } 
                
             String mediaPlayback = features.get(MEDIA_PLAYBACK_REQUIRES_USER_ACTION);
