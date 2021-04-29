@@ -103,6 +103,7 @@ public class InAppBrowser extends CordovaPlugin {
     private static final String CLEAR_ALL_CACHE = "clearcache";
     private static final String CLEAR_SESSION_CACHE = "clearsessioncache";
     private static final String HARDWARE_BACK_BUTTON = "hardwareback";
+    private static final String ENABLE_HARDWARE_BACK_ON_NO_HISTORY = "enableHardwareBackOnNoHistory"; // ADDED BY BASSAM
     private static final String MEDIA_PLAYBACK_REQUIRES_USER_ACTION = "mediaPlaybackRequiresUserAction";
     private static final String SHOULD_PAUSE = "shouldPauseOnSuspend";
     private static final Boolean DEFAULT_HARDWARE_BACK = true;
@@ -130,6 +131,7 @@ public class InAppBrowser extends CordovaPlugin {
     private boolean clearAllCache = false;
     private boolean clearSessionCache = false;
     private boolean hadwareBackButton = true;
+    private boolean _enableHardwareBackOnNoHistory = true;//Added By Bassam Basamad
     private boolean mediaPlaybackRequiresUserGesture = false;
     private boolean shouldPauseInAppBrowser = false;
     private boolean useWideViewPort = true;
@@ -584,6 +586,14 @@ public class InAppBrowser extends CordovaPlugin {
         return hadwareBackButton;
     }
 
+        /**
+     * Is the hardware back button function working if no history available so will not close the inappbrowser
+     * @return boolean
+     */
+    public boolean isEnableHardwareBackOnNoHistory() {
+        return _enableHardwareBackOnNoHisotry;
+    }
+   
     /**
      * Checks to see if it is possible to go forward one page in history, then does so.
      */
@@ -662,6 +672,11 @@ public class InAppBrowser extends CordovaPlugin {
             } else {
                 hadwareBackButton = DEFAULT_HARDWARE_BACK;
             }
+            String enableHardwareBackOnNoHisotry = features.get(ENABLE_HARDWARE_BACK_ON_NO_HISTORY);
+            if (enableHardwareBackOnNoHisotry != null) {
+                _enableHardwareBackOnNoHisotry = enableHardwareBackOnNoHisotry.equals("yes") ? true : false;
+            } 
+               
             String mediaPlayback = features.get(MEDIA_PLAYBACK_REQUIRES_USER_ACTION);
             if (mediaPlayback != null) {
                 mediaPlaybackRequiresUserGesture = mediaPlayback.equals("yes") ? true : false;
