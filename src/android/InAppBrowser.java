@@ -107,6 +107,7 @@ public class InAppBrowser extends CordovaPlugin {
     private static final String MEDIA_PLAYBACK_REQUIRES_USER_ACTION = "mediaPlaybackRequiresUserAction";
     private static final String SHOULD_PAUSE = "shouldPauseOnSuspend";
     private static final Boolean DEFAULT_HARDWARE_BACK = true;
+    private static final Boolean DEFAULT_HARDWARE_BACK_ON_NO_HISTORY = true;
     private static final String USER_WIDE_VIEW_PORT = "useWideViewPort";
     private static final String TOOLBAR_COLOR = "toolbarcolor";
     private static final String CLOSE_BUTTON_CAPTION = "closebuttoncaption";
@@ -676,7 +677,9 @@ public class InAppBrowser extends CordovaPlugin {
             String enableHardwareBackOnNoHisotry = features.get(ENABLED_HARDWARE_BACK_ON_NO_HISTORY);
             if (enableHardwareBackOnNoHisotry != null) {
                 enabledHardwareBackOnNoHistory = enableHardwareBackOnNoHisotry.equals("yes") ? true : false;
-            } 
+            } else {
+                enabledHardwareBackOnNoHistory = DEFAULT_HARDWARE_BACK_ON_NO_HISTORY;
+            }
                
             String mediaPlayback = features.get(MEDIA_PLAYBACK_REQUIRES_USER_ACTION);
             if (mediaPlayback != null) {
@@ -702,6 +705,8 @@ public class InAppBrowser extends CordovaPlugin {
             String closeButtonCaptionSet = features.get(CLOSE_BUTTON_CAPTION);
             if (closeButtonCaptionSet != null) {
                 closeButtonCaption = closeButtonCaptionSet;
+            } else {
+                closeButtonCaption = "";
             }
             String closeButtonColorSet = features.get(CLOSE_BUTTON_COLOR);
             if (closeButtonColorSet != null) {
